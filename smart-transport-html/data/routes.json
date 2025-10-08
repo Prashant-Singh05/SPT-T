@@ -1,0 +1,54 @@
+[
+  {
+    "id": "1",
+    "name": "Downtown Express",
+    "number": "101",
+    "startPoint": "Central Station",
+    "endPoint": "Airport Terminal",
+    "stops": ["Central Station", "City Hall", "University", "Shopping Mall", "Airport Terminal"],
+    "duration": 45,
+    "frequency": 15,
+    "price": 2.50,
+    "isActive": true,
+    "type": "bus"
+  },
+  {
+    "id": "2",
+    "name": "University Line",
+    "number": "202",
+    "startPoint": "University Campus",
+    "endPoint": "Residential District",
+    "stops": ["University Campus", "Library", "Student Center", "Dormitories", "Residential District"],
+    "duration": 30,
+    "frequency": 10,
+    "price": 1.75,
+    "isActive": true,
+    "type": "bus"
+  },
+  {
+    "id": "3",
+    "name": "Metro Blue Line",
+    "number": "301",
+    "startPoint": "North Station",
+    "endPoint": "South Station",
+    "stops": ["North Station", "Business District", "Central Park", "Museum", "South Station"],
+    "duration": 25,
+    "frequency": 5,
+    "price": 3.00,
+    "isActive": true,
+    "type": "metro"
+  },
+  {
+    "id": "4",
+    "name": "Night Owl",
+    "number": "404",
+    "startPoint": "Downtown",
+    "endPoint": "Suburbs",
+    "stops": ["Downtown", "Entertainment District", "Residential Area", "Suburbs"],
+    "duration": 60,
+    "frequency": 30,
+    "price": 2.00,
+    "isActive": true,
+    "type": "bus"
+  }
+]

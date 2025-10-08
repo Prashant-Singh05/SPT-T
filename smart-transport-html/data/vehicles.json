@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "number": "BUS-001",
+    "type": "bus",
+    "capacity": 50,
+    "status": "active",
+    "lastMaintenance": "2024-01-15",
+    "nextMaintenance": "2024-04-15",
+    "driver": "John Smith"
+  },
+  {
+    "id": "2",
+    "number": "BUS-002",
+    "type": "bus",
+    "capacity": 50,
+    "status": "maintenance",
+    "lastMaintenance": "2024-01-20",
+    "nextMaintenance": "2024-04-20",
+    "driver": "Sarah Johnson"
+  },
+  {
+    "id": "3",
+    "number": "TRAM-001",
+    "type": "tram",
+    "capacity": 80,
+    "status": "active",
+    "lastMaintenance": "2024-01-10",
+    "nextMaintenance": "2024-04-10",
+    "driver": "Mike Wilson"
+  },
+  {
+    "id": "4",
+    "number": "METRO-001",
+    "type": "metro",
+    "capacity": 200,
+    "status": "active",
+    "lastMaintenance": "2024-01-05",
+    "nextMaintenance": "2024-04-05",
+    "driver": "Lisa Brown"
+  }
+]

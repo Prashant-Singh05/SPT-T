@@ -1,0 +1,63 @@
+[
+  {
+    "id": "1",
+    "routeId": "1",
+    "vehicleId": "1",
+    "driverId": "1",
+    "departureTime": "08:00",
+    "arrivalTime": "08:45",
+    "status": "on-time",
+    "date": "2024-01-22"
+  },
+  {
+    "id": "2",
+    "routeId": "1",
+    "vehicleId": "2",
+    "driverId": "2",
+    "departureTime": "08:15",
+    "arrivalTime": "09:00",
+    "status": "delayed",
+    "delayMinutes": 10,
+    "date": "2024-01-22"
+  },
+  {
+    "id": "3",
+    "routeId": "2",
+    "vehicleId": "3",
+    "driverId": "3",
+    "departureTime": "09:00",
+    "arrivalTime": "09:30",
+    "status": "on-time",
+    "date": "2024-01-22"
+  },
+  {
+    "id": "4",
+    "routeId": "3",
+    "vehicleId": "4",
+    "driverId": "4",
+    "departureTime": "09:30",
+    "arrivalTime": "09:55",
+    "status": "cancelled",
+    "date": "2024-01-22"
+  },
+  {
+    "id": "5",
+    "routeId": "2",
+    "vehicleId": "1",
+    "driverId": "1",
+    "departureTime": "10:00",
+    "arrivalTime": "10:30",
+    "status": "on-time",
+    "date": "2024-01-22"
+  },
+  {
+    "id": "6",
+    "routeId": "4",
+    "vehicleId": "2",
+    "driverId": "2",
+    "departureTime": "22:00",
+    "arrivalTime": "23:00",
+    "status": "on-time",
+    "date": "2024-01-22"
+  }
+]

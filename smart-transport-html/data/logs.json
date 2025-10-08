@@ -1,0 +1,43 @@
+[
+  {
+    "id": "1",
+    "type": "breakdown",
+    "vehicleId": "2",
+    "driverId": "2",
+    "description": "Engine overheating detected",
+    "timestamp": "2024-01-20T10:30:00Z",
+    "severity": "high"
+  },
+  {
+    "id": "2",
+    "type": "delay",
+    "routeId": "1",
+    "description": "Traffic congestion on Main Street",
+    "timestamp": "2024-01-20T08:15:00Z",
+    "severity": "medium"
+  },
+  {
+    "id": "3",
+    "type": "maintenance",
+    "vehicleId": "1",
+    "description": "Regular brake inspection completed",
+    "timestamp": "2024-01-20T14:00:00Z",
+    "severity": "low"
+  },
+  {
+    "id": "4",
+    "type": "breakdown",
+    "vehicleId": "3",
+    "description": "Air conditioning system malfunction",
+    "timestamp": "2024-01-21T09:15:00Z",
+    "severity": "medium"
+  },
+  {
+    "id": "5",
+    "type": "delay",
+    "routeId": "2",
+    "description": "Road construction causing delays",
+    "timestamp": "2024-01-21T11:30:00Z",
+    "severity": "high"
+  }
+]

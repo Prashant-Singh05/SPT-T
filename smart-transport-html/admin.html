@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Smart Transport</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    🚌 Smart Transport
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="routes.html">Routes</a></li>
+                    <li><a href="schedules.html">Schedules</a></li>
+                    <li><a href="tickets.html">Tickets</a></li>
+                    <li><a href="admin.html" class="active">Admin</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1>Admin Dashboard</h1>
+                <p>Manage your transportation system operations</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-4 mb-5">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚌</div>
+                        <h3 id="total-vehicles">-</h3>
+                        <p>Total Vehicles</p>
+                        <small id="active-vehicles">- active</small>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">👥</div>
+                        <h3 id="total-drivers">-</h3>
+                        <p>Total Drivers</p>
+                        <small id="active-drivers">- on duty</small>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🗺️</div>
+                        <h3 id="total-routes">-</h3>
+                        <p>Active Routes</p>
+                        <small id="active-routes">- total routes</small>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚠️</div>
+                        <h3 id="total-logs">-</h3>
+                        <p>System Logs</p>
+                        <small id="high-severity-logs">- high priority</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-2 mb-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Daily Delays</h3>
+                        <p>Number of delays per day</p>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="delays-chart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Tickets Sold</h3>
+                        <p>Daily ticket sales</p>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="tickets-chart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue Chart -->
+            <div class="card mb-5">
+                <div class="card-header">
+                    <h3>Revenue Overview</h3>
+                    <p>Daily revenue from ticket sales</p>
+                </div>
+                <div class="card-body">
+                    <canvas id="revenue-chart" width="800" height="200"></canvas>
+                </div>
+            </div>
+
+            <!-- System Logs -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3>System Logs</h3>
+                            <p>Recent system events and issues</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary btn-sm" onclick="refreshLogs()">Refresh</button>
+                            <button class="btn btn-secondary btn-sm" onclick="addLog()">Add Log</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="logs-container">
+                        <!-- Logs will be loaded dynamically -->
+                        <div class="loading">
+                            <div class="spinner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Smart Transport</h3>
+                    <p>Your reliable partner for smart public transportation.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li><a href="routes.html">Routes</a></li>
+                        <li><a href="schedules.html">Schedule</a></li>
+                        <li><a href="tickets.html">Tickets</a></li>
+                        <li><a href="admin.html">Admin</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Transport St, City, State 12345</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Smart Transport. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        // Update admin statistics
+        function updateAdminStats() {
+            const stats = {
+                totalVehicles: vehiclesData.length,
+                activeVehicles: vehiclesData.filter(v => v.status === 'active').length,
+                totalDrivers: vehiclesData.length, // Assuming one driver per vehicle for demo
+                activeDrivers: vehiclesData.filter(v => v.status === 'active').length,
+                totalRoutes: routesData.length,
+                activeRoutes: routesData.filter(r => r.isActive).length,
+                totalLogs: logsData.length,
+                highSeverityLogs: logsData.filter(l => l.severity === 'high').length
+            };
+            
+            // Update stats display
+            document.getElementById('total-vehicles').textContent = stats.totalVehicles;
+            document.getElementById('active-vehicles').textContent = `${stats.activeVehicles} active`;
+            document.getElementById('total-drivers').textContent = stats.totalDrivers;
+            document.getElementById('active-drivers').textContent = `${stats.activeDrivers} on duty`;
+            document.getElementById('total-routes').textContent = stats.activeRoutes;
+            document.getElementById('active-routes').textContent = `${stats.totalRoutes} total routes`;
+            document.getElementById('total-logs').textContent = stats.totalLogs;
+            document.getElementById('high-severity-logs').textContent = `${stats.highSeverityLogs} high priority`;
+        }
+
+        // Refresh logs
+        function refreshLogs() {
+            displayLogs();
+        }
+
+        // Add new log (demo function)
+        function addLog() {
+            const newLog = {
+                id: Date.now().toString(),
+                type: 'maintenance',
+                description: 'New log entry added',
+                timestamp: new Date().toISOString(),
+                severity: 'low'
+            };
+            
+            logsData.unshift(newLog);
+            displayLogs();
+            updateAdminStats();
+        }
+
+        // Display logs
+        function displayLogs() {
+            const container = document.getElementById('logs-container');
+            if (!container) return;
+            
+            container.innerHTML = logsData.map(log => createLogCard(log)).join('');
+        }
+
+        // Initialize admin page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for data to load
+            setTimeout(() => {
+                updateAdminStats();
+                displayLogs();
+                initializeCharts();
+            }, 1000);
+        });
+
+        // Override the initializeCharts function to use the correct data
+        function initializeCharts() {
+            if (typeof Chart === 'undefined') {
+                console.warn('Chart.js not loaded');
+                return;
+            }
+            
+            // Delays Chart
+            const delaysCtx = document.getElementById('delays-chart');
+            if (delaysCtx && analyticsData.dailyDelays) {
+                new Chart(delaysCtx, {
+                    type: 'line',
+                    data: {
+                        labels: analyticsData.dailyDelays.map(d => d.date),
+                        datasets: [{
+                            label: 'Daily Delays',
+                            data: analyticsData.dailyDelays.map(d => d.delays),
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Tickets Chart
+            const ticketsCtx = document.getElementById('tickets-chart');
+            if (ticketsCtx && analyticsData.ticketsSold) {
+                new Chart(ticketsCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: analyticsData.ticketsSold.map(t => t.date),
+                        datasets: [{
+                            label: 'Tickets Sold',
+                            data: analyticsData.ticketsSold.map(t => t.tickets),
+                            backgroundColor: '#10b981'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenue-chart');
+            if (revenueCtx && analyticsData.revenue) {
+                new Chart(revenueCtx, {
+                    type: 'line',
+                    data: {
+                        labels: analyticsData.revenue.map(r => r.date),
+                        datasets: [{
+                            label: 'Daily Revenue ($)',
+                            data: analyticsData.revenue.map(r => r.revenue),
+                            borderColor: '#2563eb',
+                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
