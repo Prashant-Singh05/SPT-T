@@ -188,13 +188,34 @@
             }
         };
 
-        // Handle URL search parameter
+        // Handle URL search parameters
         window.addEventListener('load', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const searchTerm = urlParams.get('search');
+            const fromLocation = urlParams.get('from');
+            const toLocation = urlParams.get('to');
+            const travelDate = urlParams.get('date');
+            
             if (searchTerm) {
                 document.getElementById('route-search').value = searchTerm;
                 filterRoutes();
+            }
+            
+            // Handle advanced search parameters
+            if (fromLocation || toLocation) {
+                let searchQuery = '';
+                if (fromLocation && toLocation) {
+                    searchQuery = `${fromLocation} to ${toLocation}`;
+                } else if (fromLocation) {
+                    searchQuery = fromLocation;
+                } else if (toLocation) {
+                    searchQuery = toLocation;
+                }
+                
+                if (searchQuery) {
+                    document.getElementById('route-search').value = searchQuery;
+                    filterRoutes();
+                }
             }
         });
     </script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Transport & Ticketing System</title>
+    <title>Busyatri - Your Trusted Online Travel Partner</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
@@ -13,44 +13,91 @@
         <div class="container">
             <div class="nav-container">
                 <a href="index.html" class="logo">
-                    🚌 Smart Transport
+                    <span class="logo-text">Busyatri</span>
+                    <span class="logo-arrows">>></span>
                 </a>
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="routes.html">Routes</a></li>
-                    <li><a href="schedules.html">Schedules</a></li>
-                    <li><a href="tickets.html">Tickets</a></li>
-                    <li><a href="admin.html">Admin</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="routes.html">About <span class="dropdown-arrow">▼</span></a></li>
+                    <li><a href="schedules.html">Services <span class="dropdown-arrow">▼</span></a></li>
+                    <li><a href="tickets.html">Plan Your Trip</a></li>
+                    <li><a href="admin.html">Stations & Stops</a></li>
+                    <li><a href="login.html">News & Updates</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Smart Public Transport</h1>
-            <p>Book tickets, track routes, and enjoy seamless travel experience with our modern transportation system.</p>
-            
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search routes or stops..." id="hero-search">
-                <button class="search-btn" onclick="handleHeroSearch()">🔍</button>
+    <section class="hero-modern">
+        <div class="hero-background">
+            <div class="hero-bus-bg">
+                <img src="assets/images/photo-1557223562-6c77ef16210f.png" alt="Bus Background" class="bus-background-image">
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Your Journey of<br>Exploration Begins<br>Here!</h1>
+                    <p>Experience the allure of India's diverse landscapes and vibrant cities as you embark on your next adventure with Busyatri's reliable transportation services.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Interface Overlay -->
+        <div class="search-overlay">
+            <div class="search-card-modern">
+                <!-- Trip Type Tabs -->
+                <div class="trip-tabs">
+                    <button class="trip-tab active" onclick="setTripType('oneway')">ONE WAY</button>
+                    <button class="trip-tab" onclick="setTripType('roundtrip')">ROUND TRIP</button>
+                </div>
+                
+                <!-- Search Fields -->
+                <div class="search-fields">
+                    <div class="search-field-modern">
+                        <label>FROM</label>
+                        <input type="text" placeholder="Los Angeles" value="Los Angeles" id="from-location">
+                    </div>
+                    
+                    <button class="swap-btn-modern" onclick="swapLocations()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 3h5v5M21 3l-7 7M8 21H3v-5M3 16l7-7"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="search-field-modern">
+                        <label>TO</label>
+                        <input type="text" placeholder="San Diego" value="San Diego" id="to-location">
+                    </div>
+                    
+                    <div class="search-field-modern">
+                        <label>DEPARTING DATE</label>
+                        <input type="text" placeholder="Sunday, 22 Oct" value="Sunday, 22 Oct" id="departure-date">
+                    </div>
+                    
+                    <div class="search-field-modern">
+                        <label>PASSENGER(S)</label>
+                        <input type="text" placeholder="1 Adult" value="1 Adult" id="passengers">
+                    </div>
+                    
+                    <button class="search-btn-modern" onclick="handleAdvancedSearch()">
+                        Search
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Popular Routes Section -->
-    <section class="section">
+    <section class="popular-routes-section">
         <div class="container">
-            <div class="text-center mb-5">
+            <div class="routes-header">
                 <h2>Popular Routes</h2>
-                <p>Discover our most frequented transportation routes</p>
+                <p>Discover our most sought-after journeys, carefully curated to showcase the best of India's breathtaking landscapes and vibrant destinations. Explore these top-rated routes and start your adventure with Busyatri today.</p>
+                <button class="stations-btn">Stations & Stops</button>
             </div>
             
-            <div class="grid grid-3" id="popular-routes">
-                <!-- Routes will be loaded dynamically -->
+            <div class="routes-grid" id="popular-routes">
+                <!-- Route cards will be loaded dynamically -->
                 <div class="loading">
                     <div class="spinner"></div>
                 </div>
@@ -119,16 +166,89 @@
         </div>
     </section>
 
+    <!-- Busyatri About Section -->
+    <section class="section" style="background: var(--white); padding: 3rem 0;">
+        <div class="container">
+            <div class="busyatri-intro">
+                <h1 class="main-title">Busyatri: India's Leading Online Bus Booking and Train Ticket Booking Platform</h1>
+                <p class="intro-text">
+                    Busyatri is India's leading bus and train ticket booking platform for over 5 years and 10+ million satisfied users. It offers a seamless online ticket booking experience for millions of passengers across India.
+                </p>
+                <p class="intro-text">
+                    With 1000+ bus operators and 50000+ routes on Busyatri, you can easily find buses to your destination. You can check the best price with exclusive discounts and offers when booking train or bus tickets.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Busyatri for Bus Booking -->
+    <section class="section" style="background: var(--white); padding: 3rem 0;">
+        <div class="container">
+            <div class="content-section">
+                <h2 class="section-title">Why Choose Busyatri for Bus Booking?</h2>
+                <p class="section-intro">Below are some of the reasons why you should choose Busyatri for booking bus tickets.</p>
+                
+                <ul class="feature-list">
+                    <li><strong>Free Cancellation</strong> - Cancel bus tickets without paying cancellation charges.</li>
+                    <li><strong>Flexi Ticket</strong> - Select a Flexi ticket to modify your travel date at least 8 hours before departure.</li>
+                    <li><strong>Earn Rewards</strong> - Refer your friend and get INR 100 in your Busyatri wallet after they complete their first trip.</li>
+                    <li><strong>Booking for Women</strong> - Access exclusive deals for women travellers, view the number of women on your bus, enjoy priority helplines, and find buses preferred by women.</li>
+                    <li><strong>Primo Services</strong> - Select top-rated bus operators that offer timely and customer-friendly Primo services.</li>
+                    <li><strong>24/7 Customer Support</strong> - Receive 24/7 customer service for any assistance related to bookings.</li>
+                    <li><strong>Instant Refund</strong> - Get an instant refund for cancellation or booking-related issues.</li>
+                    <li><strong>Live Bus Tracking</strong> - Track your bus in real-time and plan your journey more efficiently.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Busyatri for Train Booking -->
+    <section class="section" style="background: var(--light-gray); padding: 3rem 0;">
+        <div class="container">
+            <div class="content-section">
+                <h2 class="section-title">Why Choose Busyatri for Train Ticket Booking?</h2>
+                <p class="section-intro">Below are some of the reasons to book train tickets on Busyatri.</p>
+                
+                <ul class="feature-list">
+                    <li><strong>An authorised partner of IRCTC</strong> - Busyatri is an authorised IRCTC partner, providing authentic information.</li>
+                    <li><strong>Free cancellation</strong> - Get the freedom to cancel train tickets without paying cancellation charges.</li>
+                    <li><strong>Seat Guarantee</strong> - Waitlist train ticket will get confirmed, or you will get a 3X refund to book an alternate train or bus.</li>
+                    <li><strong>24/7 customer support</strong> - Customer support for Busyatri is available 24/7 to help you with train bookings.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Book Section -->
+    <section class="section" style="background: var(--white); padding: 3rem 0;">
+        <div class="container">
+            <div class="content-section">
+                <h2 class="section-title">How to Book Bus Tickets and Train Tickets Online on Busyatri?</h2>
+                <p class="section-intro">Below are some simple steps that you can follow when booking train or bus tickets online on Busyatri.</p>
+                
+                <ol class="step-list">
+                    <li><strong>Step 1:</strong> Visit the Busyatri website or app.</li>
+                    <li><strong>Step 2:</strong> Select your preferred mode of transport, either bus or train.</li>
+                    <li><strong>Step 3:</strong> Select your travel date and journey details.</li>
+                    <li><strong>Step 4:</strong> Search for your preferred bus or train available on your chosen travel date and route.</li>
+                    <li><strong>Step 5:</strong> Select your preferred boarding or dropping points and enter your contact details.</li>
+                    <li><strong>Step 6:</strong> Choose from multiple payment options to proceed with the payment process.</li>
+                    <li><strong>Step 7:</strong> After the successful payment, you will receive a confirmation of your train or bus bookings on your registered email ID or mobile number.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div>
-                    <h3>Smart Transport</h3>
-                    <p>Your reliable partner for smart public transportation. Book tickets, track routes, and enjoy seamless travel experience.</p>
+                    <h3>Busyatri</h3>
+                    <p>Your trusted online travel partner. Book tickets, track routes, and enjoy seamless travel experience across India.</p>
                     <div class="mt-3">
-                        <p>📞 +1 (555) 123-4567</p>
-                        <p>✉️ info@smarttransport.com</p>
+                        <p>📞 +91-800-123-4567</p>
+                        <p>✉️ support@busyatri.com</p>
                     </div>
                 </div>
                 
@@ -161,21 +281,135 @@
     <!-- Scripts -->
     <script src="js/app.js"></script>
     <script>
-        // Handle hero search functionality
-        function handleHeroSearch() {
-            const searchTerm = document.getElementById('hero-search').value;
-            if (searchTerm.trim()) {
-                // Redirect to routes page with search term
-                window.location.href = `routes.html?search=${encodeURIComponent(searchTerm)}`;
+        // Enhanced search functionality
+        function handleAdvancedSearch() {
+            const fromLocation = document.getElementById('from-location').value.trim();
+            const toLocation = document.getElementById('to-location').value.trim();
+            const travelDate = document.getElementById('travel-date').value;
+            
+            if (!fromLocation || !toLocation) {
+                alert('Please enter both From and To locations');
+                return;
             }
+            
+            // Build search parameters
+            const params = new URLSearchParams();
+            if (fromLocation) params.append('from', fromLocation);
+            if (toLocation) params.append('to', toLocation);
+            if (travelDate) params.append('date', travelDate);
+            
+            // Redirect to routes page with search parameters
+            window.location.href = `routes.html?${params.toString()}`;
         }
         
-        // Allow Enter key in hero search
-        document.getElementById('hero-search').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                handleHeroSearch();
+        // Swap locations
+        function swapLocations() {
+            const fromInput = document.getElementById('from-location');
+            const toInput = document.getElementById('to-location');
+            const temp = fromInput.value;
+            fromInput.value = toInput.value;
+            toInput.value = temp;
+        }
+        
+        // Set date (today or tomorrow)
+        function setDate(type) {
+            const dateInput = document.getElementById('travel-date');
+            const today = new Date();
+            
+            if (type === 'tomorrow') {
+                today.setDate(today.getDate() + 1);
+            }
+            
+            const dateString = today.toISOString().split('T')[0];
+            dateInput.value = dateString;
+            
+            // Update quick button states
+            document.querySelectorAll('.quick-date-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // Set popular route
+        function setPopularRoute(from, to) {
+            document.getElementById('from-location').value = from;
+            document.getElementById('to-location').value = to;
+        }
+        
+        // Initialize date input with today's date
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('travel-date');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+                dateInput.value = today;
+            }
+            
+            // Add autocomplete suggestions for locations
+            setupLocationAutocomplete();
+        });
+        
+        // Setup location autocomplete
+        function setupLocationAutocomplete() {
+            const fromInput = document.getElementById('from-location');
+            const toInput = document.getElementById('to-location');
+            
+            // Common locations from routes data
+            const locations = [
+                'Central Station', 'Airport Terminal', 'University Campus', 
+                'Residential District', 'North Station', 'South Station',
+                'Downtown', 'Suburbs', 'City Hall', 'Shopping Mall',
+                'Business District', 'Central Park', 'Museum', 'Library',
+                'Student Center', 'Dormitories', 'Entertainment District',
+                'Residential Area'
+            ];
+            
+            [fromInput, toInput].forEach(input => {
+                if (input) {
+                    input.addEventListener('input', function() {
+                        const value = this.value.toLowerCase();
+                        const suggestions = locations.filter(loc => 
+                            loc.toLowerCase().includes(value)
+                        );
+                        
+                        // You could implement a dropdown here
+                        // For now, we'll just use the basic input
+                    });
+                }
+            });
+        }
+        
+        // Handle Enter key in search fields
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('search-input-field')) {
+                handleAdvancedSearch();
             }
         });
+        
+        // Add active state to quick date buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('quick-date-btn')) {
+                document.querySelectorAll('.quick-date-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                e.target.classList.add('active');
+            }
+        });
+        
+        // Trip type functionality
+        function setTripType(type) {
+            document.querySelectorAll('.trip-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            if (type === 'roundtrip') {
+                // Add return date field if needed
+                console.log('Round trip selected');
+            } else {
+                console.log('One way selected');
+            }
+        }
     </script>
 </body>
 </html>
