@@ -82,7 +82,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1rem 2rem 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -1040,7 +1040,7 @@ p {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 4rem 2rem;
+    padding: 4rem 2rem 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -1052,7 +1052,7 @@ p {
     padding-right: 2rem;
     z-index: 3;
     position: relative;
-    margin-top: 4rem;
+    margin-top: 0;
 }
 
 .hero-text h1 {
