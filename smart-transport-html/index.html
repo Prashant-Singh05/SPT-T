@@ -91,9 +91,8 @@
     <section class="popular-routes-section">
         <div class="container">
             <div class="routes-header">
-                <h2>Popular Routes</h2>
-                <p>Discover our most sought-after journeys, carefully curated to showcase the best of India's breathtaking landscapes and vibrant destinations. Explore these top-rated routes and start your adventure with Busyatri today.</p>
-                <button class="stations-btn">Stations & Stops</button>
+                <h2>Popular Bus Routes</h2>
+                <p>You can check popular bus routes, compare bus schedules, timings and their prices to book bus tickets online. Busyatri offers you low-cost bus fares for your travel across India. For a seamless travel experience, book bus tickets online with Busyatri for your bus journey.</p>
             </div>
             
             <div class="routes-grid" id="popular-routes">
@@ -101,67 +100,6 @@
                 <div class="loading">
                     <div class="spinner"></div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Upcoming Departures Section -->
-    <section class="section" style="background: var(--light-gray);">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2>Upcoming Departures</h2>
-                <p>Real-time departure information</p>
-            </div>
-            
-            <div class="grid grid-3" id="upcoming-schedules">
-                <!-- Schedules will be loaded dynamically -->
-                <div class="loading">
-                    <div class="spinner"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Actions Section -->
-    <section class="section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2>Quick Actions</h2>
-                <p>Get started with our services</p>
-            </div>
-            
-            <div class="grid grid-4">
-                <a href="routes.html" class="card" style="text-decoration: none; color: inherit;">
-                    <div class="card-body text-center">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🗺️</div>
-                        <h3>View Routes</h3>
-                        <p>Explore all available routes</p>
-                    </div>
-                </a>
-                
-                <a href="schedules.html" class="card" style="text-decoration: none; color: inherit;">
-                    <div class="card-body text-center">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">⏰</div>
-                        <h3>Check Schedule</h3>
-                        <p>View timetables and schedules</p>
-                    </div>
-                </a>
-                
-                <a href="tickets.html" class="card" style="text-decoration: none; color: inherit;">
-                    <div class="card-body text-center">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎫</div>
-                        <h3>Buy Tickets</h3>
-                        <p>Purchase your journey tickets</p>
-                    </div>
-                </a>
-                
-                <a href="admin.html" class="card" style="text-decoration: none; color: inherit;">
-                    <div class="card-body text-center">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">⚙️</div>
-                        <h3>Admin Panel</h3>
-                        <p>Manage system operations</p>
-                    </div>
-                </a>
             </div>
         </div>
     </section>
@@ -410,6 +348,77 @@
                 console.log('One way selected');
             }
         }
+        
+        // Load popular routes - Updated
+        function loadPopularRoutes() {
+            console.log('Loading popular routes...');
+            const routesContainer = document.getElementById('popular-routes');
+            if (!routesContainer) {
+                console.log('Routes container not found');
+                return;
+            }
+            
+            // Popular routes data matching the attached photo
+            const popularRoutes = [
+                { from: 'Bangalore', to: 'Hyderabad', icon: '🏛️' },
+                { from: 'Hyderabad', to: 'Vijayawada', icon: '🏛️' },
+                { from: 'Bangalore', to: 'Chennai', icon: '🏛️' },
+                { from: 'Hyderabad', to: 'Visakhapatnam', icon: '🏛️' },
+                { from: 'Bangalore', to: 'Tirupathi', icon: '🛕' },
+                { from: 'Hyderabad', to: 'Tirupathi', icon: '🛕' },
+                { from: 'Delhi', to: 'Lucknow', icon: '🏛️' },
+                { from: 'Chennai', to: 'Madurai', icon: '🛕' },
+                { from: 'Delhi', to: 'Manali', icon: '🏛️' },
+                { from: 'Delhi', to: 'Jaipur', icon: '🏛️' },
+                { from: 'Mumbai', to: 'Pune', icon: '🏛️' },
+                { from: 'Pune', to: 'Nagpur', icon: '🏛️' },
+                { from: 'Hyderabad', to: 'Nellore', icon: '🏛️' },
+                { from: 'Chennai', to: 'Coimbatore', icon: '🛕' },
+                { from: 'Mumbai', to: 'Indore', icon: '🏛️' },
+                { from: 'Ahmedabad', to: 'Rajkot', icon: '🏛️' }
+            ];
+            
+            // Clear loading spinner
+            routesContainer.innerHTML = '';
+            console.log('Container cleared, creating route cards...');
+            
+            // Create route cards
+            popularRoutes.forEach(route => {
+                const routeCard = document.createElement('div');
+                routeCard.className = 'route-card';
+                routeCard.innerHTML = `
+                    <div class="route-icon">
+                        ${route.icon}
+                    </div>
+                    <div class="route-info">
+                        <div class="route-text">${route.from} → ${route.to}</div>
+                    </div>
+                    <button class="view-buses-btn" onclick="searchRoute('${route.from}', '${route.to}')">
+                        View Buses
+                    </button>
+                `;
+                routesContainer.appendChild(routeCard);
+            });
+            console.log('Route cards created successfully');
+        }
+        
+        // Search route function
+        function searchRoute(from, to) {
+            // Set the search form values
+            document.getElementById('from-location').value = from;
+            document.getElementById('to-location').value = to;
+            
+            // Redirect to routes page with search parameters
+            const params = new URLSearchParams();
+            params.append('from', from);
+            params.append('to', to);
+            window.location.href = `routes.html?${params.toString()}`;
+        }
+        
+        // Initialize popular routes when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPopularRoutes();
+        });
     </script>
 </body>
 </html>
